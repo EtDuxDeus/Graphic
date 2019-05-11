@@ -92,7 +92,7 @@ namespace CalcTrans
 				string op;
 				double partialResult = 0.0;
 				EvalExp4(out result);
-				while((op=token) == "*")
+				while((op=token) == "*"|| op == "/" || op == "%")
 				{
 					GetToken();
 					EvalExp4(out partialResult);
@@ -132,6 +132,13 @@ namespace CalcTrans
 					}
 					for (t = (int)partialResult - 1; t > 0; t--)
 						result = result * (double)ex;
+				}
+				if(token == "k")
+				{
+					GetToken();
+					EvalExp4(out partialResult);
+					ex = result;
+
 				}
 			}
 			//Выполнение операции унарного + или -.
@@ -235,7 +242,7 @@ namespace CalcTrans
 			//true если символ - разделитель
 			bool IsDelim(char c)
 			{
-				if (("+-/*%^".IndexOf(c) != -1)) return true;
+				if (("+-/*%^k".IndexOf(c) != -1)) return true;
 				return false;
 			}
 		}

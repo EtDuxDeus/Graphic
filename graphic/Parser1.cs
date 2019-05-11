@@ -8,7 +8,7 @@ namespace CalcTrans
 {
     static class Program
     {
-        static public double Main(string Expression, double x)
+        static public double Calculate(string Expression, double x)
         {
             string expr = Expression;
             Parser p = new Parser();
@@ -60,7 +60,7 @@ namespace CalcTrans
 						SyntaxErr(Errors.SYNTAX);
 					return result;
 				}
-				catch (ParserException exc)
+				catch (ParserException)
 				{
 					return 0.0;
 				}
@@ -132,13 +132,6 @@ namespace CalcTrans
 					}
 					for (t = (int)partialResult - 1; t > 0; t--)
 						result = result * (double)ex;
-				}
-				if(token == "k")
-				{
-					GetToken();
-					EvalExp4(out partialResult);
-					ex = result;
-
 				}
 			}
 			//Выполнение операции унарного + или -.
@@ -242,7 +235,7 @@ namespace CalcTrans
 			//true если символ - разделитель
 			bool IsDelim(char c)
 			{
-				if (("+-/*%^k".IndexOf(c) != -1)) return true;
+				if (("+-/*%^".IndexOf(c) != -1)) return true;
 				return false;
 			}
 		}

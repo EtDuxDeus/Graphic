@@ -28,7 +28,7 @@ namespace graphic
 			string Expression = textBox1.Text;
 			for(double i = -50;i < 50; i++)
 			{
-				chart1.Series[0].Points.AddXY(i, CalcTrans.Program.Main(Expression, i));
+				chart1.Series[0].Points.AddXY(i, CalcTrans.Program.Calculate(Expression, i));
 			}
 		}
 	}
